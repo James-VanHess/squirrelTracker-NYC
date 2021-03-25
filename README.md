@@ -2,7 +2,7 @@
 Repo for group work on developing a squirrel tracking application in Central Park, NYC
 
 
-Squirrel-Tracker
+squirrelTracker-NYC
 ==============
 
 Project background description
