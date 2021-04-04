@@ -38,7 +38,7 @@ from explorer.utils import (
     url_get_fullscreen
 )
 
-from .models import #model_data
+from sightings.models import Squirrel #model_data
 from .forms import #django_form
 
 
