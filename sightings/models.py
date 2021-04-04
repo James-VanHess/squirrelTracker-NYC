@@ -18,14 +18,10 @@ class Squirrel(models.Model):
 
 
     # Lattitude 
-    x = models.FloatField(
-        blank=False,
-        )
+    x = models.FloatField(blank=False,)
     
     # Longitude
-    y = models.FloatField(
-        blank=False,
-        )
+    y = models.FloatField(blank=False,)
 
     # Lat/Long
     lat_long = f'Point ({x}, {y})'
