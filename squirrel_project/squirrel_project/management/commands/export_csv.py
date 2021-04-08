@@ -16,10 +16,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         path = args[0]
-        fields = Squirrels._meta.fields
+        fields = Squirrel._meta.fields
         with open(path, 'w') as f:
             writer = csv.writer(f)
-            for i in Squirrels.objects.all():
+            for i in Squirrel.objects.all():
                 row = [getattr(i, field.name) for field in fields]
                 writer.writerow(row)
             f.close()

@@ -38,16 +38,16 @@ All the sightings can be viewed at the main page and the user can get access to 
 #### Create New Sightings
 A new spot creation can be made by each user by clicking the "New Spot Creation" button and then users can be firected to a new page to update the information.
 
-    located at: /sightings/new/
+    located at: /sightings/add_view/
     
     
 #### View Squirrel Statistics
 The Squirrel Status Summary can be viewed at main page through the link below.
  
-    located at: /sightings/stats/
+    located at: /sightings/stats_view/
 
 
-#### Update Squirrel Sighting Data
+#### Edit Squirrel Sighting Data
 Users can update sighting information about each squirrel sighting via the link listed at main page.
 
     located at: /sightings/<unique-squirrel-id>
@@ -72,7 +72,7 @@ We install it on our VM using the code below.
 The server links to the web application
 --------------
 #### Link to the sightings of squirrel:
-#http://35.245.183.224/sightings/
+#http://00.000.000.000/sightings/
 
 #### Link to the map of squirrels:
-#http://35.245.183.224/map/
+#http://00.000.000.000/map/
