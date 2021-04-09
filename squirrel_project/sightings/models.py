@@ -6,6 +6,8 @@ from django.urls import reverse
 from django.forms import ModelForm
 
 
+class Meta:
+    managed = True
 
 class Squirrel(models.Model):
     '''

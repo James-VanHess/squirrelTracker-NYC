@@ -85,3 +85,5 @@ def map_view(request):
     map_sighting = Squirrel.objects.all()[:sighting_limit]
     return render(request, 'map/Map_HTML.html', {"map_sighting": map_sighting})
 
+
+# %%
