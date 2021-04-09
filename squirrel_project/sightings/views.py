@@ -43,7 +43,9 @@ from .forms import #django_form
 
 
 # Create your views here.
-
+def index(request):
+    return HttpResponse('Hello')
+    
 def sightings_view(request):
     view_data = model_data.objects.all()
     page = request.GET.get('page', 1)
