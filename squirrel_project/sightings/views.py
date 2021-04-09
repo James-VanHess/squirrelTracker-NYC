@@ -7,11 +7,14 @@
 import django
 from django.db import DatabaseError
 from django.db.models import Count, Avg, Max, Min
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.forms.models import model_to_dict
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect, Http404
-from django.shortcuts import get_object_or_404, render
-from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse
 from django.utils.decorators import method_decorator
+from django.views.decorators.http import require_POST
+from django.views import generic
 from django.views.generic import ListView
 from django.views.generic.base import View
 from django.views.generic.edit import CreateView, DeleteView
@@ -20,23 +23,23 @@ from django.core.exceptions import ImproperlyConfigured
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import LoginView
 
-from explorer import app_settings
-from explorer.connections import connections
-from explorer.exporters import get_exporter_class
-from explorer.forms import QueryForm
-from explorer.models import Query, QueryLog, MSG_FAILED_BLACKLIST
-from explorer.tasks import execute_query
-from explorer.utils import (
-    url_get_rows,
-    url_get_query_id,
-    url_get_log_id,
-    url_get_params,
-    safe_login_prompt,
-    fmt_sql,
-    allowed_query_pks,
-    url_get_show,
-    url_get_fullscreen
-)
+# from explorer import app_settings
+# from explorer.connections import connections
+# from explorer.exporters import get_exporter_class
+# from explorer.forms import QueryForm
+# from explorer.models import Query, QueryLog, MSG_FAILED_BLACKLIST
+# from explorer.tasks import execute_query
+# from explorer.utils import (
+#     url_get_rows,
+#     url_get_query_id,
+#     url_get_log_id,
+#     url_get_params,
+#     safe_login_prompt,
+#     fmt_sql,
+#     allowed_query_pks,
+#     url_get_show,
+#     url_get_fullscreen
+# )
 
 from .models import Squirrel
 
@@ -49,23 +52,23 @@ def sightings_view(request):
 
 def add_view(request):
     if request.method == "POST":
-        form = django_form(request.POST)
+        form = Form(request.POST)
         if form.is_valid():
             form.save()
             return redirect("/sightings/")
     else:
-        form = django_form()
+        form = Form()
     return render(request, 'sightings/Add_HTML.html', {'form':form})
 
 
 def update_view(request, unique_squirrel_id):
     update_sighting = get_object_or_404(Squirrel, unique_squirrel_id = unique_squirrel_id)
     if request.method == "POST":
-        form = django_form(request.POST, instance = edit_sighting)
+        form = Form(request.POST, instance = edit_sighting)
         if form.is_valid():
             form.save()
             return redirect("/sightings/")
-    form = django_form(instance=update_sighting)
+    form = Form(instance=update_sighting)
     return render(request, "sightings/Update_HTML.html", {"form": form, "unique_squirrel_id": unique_squirrel_id})
 
 

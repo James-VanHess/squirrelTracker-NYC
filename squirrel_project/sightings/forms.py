@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Squirrels
+from .models import Squirrel
 
 
 class Form(ModelForm):
