@@ -14,5 +14,6 @@ url_list = [
     path('add/', views.add_view, name = 'add'),
     path('stats/', views.stats_view, name = 'stats'),
     path('<str:unique_squirrel_id>/', views.update_view, name = 'update'),
+    path('', views.map, name = 'map'),
 ]
 
