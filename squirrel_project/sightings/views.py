@@ -38,12 +38,11 @@ from explorer.utils import (
     url_get_fullscreen
 )
 
-from .models import #model_data
-from .forms import #django_form
+from .models import Squirrel
 
 
 def sightings_view(request):
-    view_data = model_data.objects.all()
+    view_data = Squirrel.objects.all()
     page = request.GET.get('page', 1)
     return render(request, 'sightings/Sightings_HTML.html', {'users':users})
 
@@ -60,7 +59,7 @@ def add_view(request):
 
 
 def update_view(request, unique_squirrel_id):
-    update_sighting = get_object_or_404(model_data, unique_squirrel_id = unique_squirrel_id)
+    update_sighting = get_object_or_404(Squirrel, unique_squirrel_id = unique_squirrel_id)
     if request.method == "POST":
         form = django_form(request.POST, instance = edit_sighting)
         if form.is_valid():
@@ -71,7 +70,7 @@ def update_view(request, unique_squirrel_id):
 
 
 def stats_view(request):
-    view_data = model_data.objects.all()
+    view_data = Squirrel.objects.all()
     total_squirrel = len(view_data)
     lat = view_data.aggregate(min_latitude = Min('latitude'),max_latitude = Max('latitude'),average_latitude = Avg('latitude'))
     lon = view_data.aggregate(min_longitude = Min('longitude'),max_longitude = Max('longitude'),average_longitude = Avg('longitude'))
@@ -83,6 +82,6 @@ def stats_view(request):
 
 def map_view(request):
     sighting_limit = 100
-    map_sighting = model_data.objects.all()[:sighting_limit]
+    map_sighting = Squirrel.objects.all()[:sighting_limit]
     return render(request, 'map/Map_HTML.html', {"map_sighting": map_sighting})
 
