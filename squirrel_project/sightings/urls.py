@@ -7,7 +7,7 @@ from . import views
 from django.conf.urls import url
 
 #app_name = 'sightings'
-
+directory = 'sightings'
 urlpatterns = [
     path('', views.sightings_view, name ='sightings'),
     path('sightings/', views.sightings_view, name='sightings'),
