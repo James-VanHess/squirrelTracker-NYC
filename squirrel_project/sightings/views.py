@@ -28,16 +28,13 @@ from .forms import django_form
 
 def sightings_view(request):
     view_data = Squirrel.objects.all()
-    page = request.GET.get('page', 1)
+    paginator = Paginator(view_data, 36)
 
-    paginator = Paginator(view_data, 10)
-    try:
-        users = paginator.page(page)
-    except PageNotAnInteger:
-        users = paginator.page(1)
-    except EmptyPage:
-        users = paginator.page(paginator.num_pages)
-    return render(request, 'sightings/Sightings_HTML.html', {'users':users})
+    page = request.GET.get('page')
+    view_data = paginator.get_page(page)
+    context = {'squirrel':view_data}
+   
+    return render(request, 'sightings/Sightings_HTML.html', context)
 
 
 def add_view(request):
