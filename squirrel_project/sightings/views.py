@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[ ]:
+
+
+#!/usr/bin/env python
+# coding: utf-8
+
 
 import json
 import django
@@ -46,7 +52,7 @@ def add_view(request):
 
 
 def update_view(request, unique_squirrel_id):
-    Object = get_object_or_404(Squirrel,Unique_squirrel_id=squirrel_id)
+    Object = get_object_or_404(Squirrel,unique_squirrel_id=squirrel_id)
     form = django_form(request.POST or None,instance=Object)
     context = {'form':form}
     if form.is_valid():
@@ -70,14 +76,7 @@ def update_view(request, unique_squirrel_id):
 
 
 def stats_view(request):
-    view_data = Squirrel.objects.all()
-    total_squirrel = len(view_data)
-    lat = view_data.aggregate(min_latitude = Min('latitude'),max_latitude = Max('latitude'),average_latitude = Avg('latitude'))
-    lon = view_data.aggregate(min_longitude = Min('longitude'),max_longitude = Max('longitude'),average_longitude = Avg('longitude'))
-    shift_count = list(view_data.values_list('shift').annotate(Count('shift')))
-    age_count = list(view_data.values_list('age').annotate(Count('age')))
-    fur_color = list(view_data.values_list('primary_fur_color').annotate(Count('primary_fur_color')))
-    return render(request, 'sightings/Stats_HTML.html', {"total_squirrel": total_squirrel,"lat": lat,"lon": lon,"shift_count": shift_count,"age_count": age_count,"fur_color": fur_color})
+    return render(request, 'sightings/Stats_HTML.html')
 
 
 def map_view(request):
