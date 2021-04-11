@@ -1,8 +1,8 @@
 import csv
 import datetime
 
-from django.core.management.base import BaseCommand, CommandError
-from .models import Squirrel
+from django.core.management import BaseCommand, CommandError
+from sightings.models import Squirrel
 
 
 
@@ -18,9 +18,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('path', type=str)
     
-    def handle(self, *args, **kwargs):
-        path = kwargs['path']
-
+    def handle(self, path, **options):
         try:
             with open(path, encoding='utf-8') as f:
                 reader = csv.DictReader(f)
