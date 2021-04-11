@@ -16,10 +16,12 @@ class Command(BaseCommand):
         parser.add_argument('path', type=str, nargs='*')
 
     def handle(self, path, **options):
-        fields = Squirrel._meta.fields
-        with open(path, 'w') as f:
-            writer = csv.writer(f)
-            for i in Squirrel.objects.all():
-                row = [getattr(i, field.name) for field in fields]
+        with open(path, 'w', newline='') as f:
+            model = Squirrel
+            field_names =  [fa.name for fa in model._meta.fields]
+            writer = csv.writer(f, quoting=csv.QUOTE_ALL)
+            writer.writerow(field_names)
+            for i in model.objects.all():
+                row = [getattr(i, fi) for fi in field_names]
                 writer.writerow(row)
             f.close()
