@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
 
 
 import django
@@ -9,9 +8,11 @@ from django.db import DatabaseError
 from django.db.models import Count, Avg, Max, Min
 from django.forms.models import model_to_dict
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect, Http404
-from django.shortcuts import get_object_or_404, render
-from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404, render, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.urls import reverse
 from django.utils.decorators import method_decorator
+from django.views.decorators.http import require_POST
 from django.views.generic import ListView
 from django.views.generic.base import View
 from django.views.generic.edit import CreateView, DeleteView
@@ -22,12 +23,21 @@ from django.contrib.auth.views import LoginView
 
 
 from .models import Squirrel
+from .forms import django_form
 
 
 def sightings_view(request):
     view_data = Squirrel.objects.all()
     page = request.GET.get('page', 1)
-    return render(request, 'sightings/Sightings_HTML.html')
+
+    paginator = Paginator(view_data, 10)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+    return render(request, 'sightings/Sightings_HTML.html', {'users':users})
 
 
 def add_view(request):
