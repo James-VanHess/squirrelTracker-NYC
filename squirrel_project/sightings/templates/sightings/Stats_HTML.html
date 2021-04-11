@@ -14278,30 +14278,34 @@ a.anchor-link {
         <h1>Squirrel Project</h1>
         <p>
             <ul>
-                <li>View Squirrel Map <a href="/sightings/Map_HTML">here</a>!</li>
-                <li>Add a new sighting <a href="/sightings/Add_HTML">here</a>!</li>
-                <li>Update a sighting <a href="/sightings/Update_HTML">here</a>!</li>
-                <li>View squirrel stats <a href="/sightings/Stats_HTML">here</a>!</li>
-                <li>View all sightings <a href="/sightings/Sightings_HTML">here</a>!</li>
+                <li>View Squirrel Map <a href="/sightings/map/">here</a>!</li>
+                <li>Add a new sighting <a href="/sightings/add/">here</a>!</li>
+                <li>Update a sighting <a href="/sightings/update/">here</a>!</li>
+                <li>View squirrel stats <a href="/sightings/stats/">here</a>!</li>
+                <li>View all sightings <a href="/sightings/">here</a>!</li>
             </ul>
+        </p>
+        <p>
         </p>
        <h2 style="font-family:courier;text-align:left;">Statistics of sightings data of squirrels</h2>
     <ol style="list-style-type:round;">
-      <li>Total number of sightings: {{total_squirrel}}</li>
+      <li>Total number of sightings:</li>
+                  <br>
+                  <li>Latitiude：average-{{lat.average_latitude}}</li>
+                  <li>Latitiude：min-{{lat.min_latitude}}</li>
+                  <li>Latitiude：max-{{lat.max_latitude}}</li>
+                  <br>
+                  <li>Longitude：average-{{lon.average_longitude}}</li>
+                  <li>Longitude：min-{{lon.min_longitude}}</li>
+                  <li>Longitude：max-{{lon.max_longitude}}</li>
+                  <br>
+                  <li>shift: {{shift_count}}</li>
+                  <br>
+                  <li>age: {{age_count}}</li>
+                  <br>
+                   <li>primary_fur_color: {{fur_color}}</li> 
+        </ol>
       <br>
-      <li>Latitiude：average-{{lat.average_latitude}}</li>
-      <li>Latitiude：min-{{lat.min_latitude}}</li>
-      <li>Latitiude：max-{{lat.max_latitude}}</li>
-      <br>
-      <li>Longitude：average-{{lon.average_longitude}}</li>
-      <li>Longitude：min-{{lon.min_longitude}}</li>
-      <li>Longitude：max-{{lon.max_longitude}}</li>
-      <br>
-      <li>shift: {{shift_count}}</li>
-      <br>
-      <li>age: {{age_count}}</li>
-      <br>
-      <li>primary_fur_color: {{fur_color}}</li></ol>
     </body>
 </html>
 </div>
