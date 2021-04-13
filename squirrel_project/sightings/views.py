@@ -24,10 +24,10 @@ from sightings.forms import django_form
 
 
 def sightings_view(request):
-    sq_data=Squirrel.objects.all()
+    view_data=Squirrel.objects.all()
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(sq_data, 10)
+    paginator = Paginator(view_data, 10)
     try:
         users = paginator.page(page)
     except PageNotAnInteger:
@@ -36,9 +36,6 @@ def sightings_view(request):
         users = paginator.page(paginator.num_pages)
     return render(request, 'sightings/Sightings_HTML.html', {'users':users})
     
-    # view_data = Squirrel.objects.all()[:50]
-    # context = {'sightings':view_data}
-    # return render(request, 'sightings/Sightings_HTML.html', context)
 
 
 def add_view(request):
@@ -67,15 +64,6 @@ def update_view(request, unique_squirrel_id):
         }
         return render(request,'sightings/Update_HTML.html',context)
     
-    # update_sighting = get_object_or_404(Squirrel, unique_squirrel_id = unique_squirrel_id)
-    # if request.method == "POST":
-    #     form = django_form(request.POST, instance = update_sighting)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect("/sightings/")
-    # form = django_form(instance=update_sighting)
-    # return render(request, "sightings/Update_HTML.html", {"form": form, "unique_squirrel_id": unique_squirrel_id})
-
 
 def stats_view(request):
     sq_data=Squirrel.objects.all()

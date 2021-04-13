@@ -54,8 +54,17 @@
         var first = true;
 
         {% for sighting in map_squirrel.all %}
-          var point_lat_lon = [{{ sighting.LATITUDE }}, {{ sighting.LONGITUDE }}];
-          var marker = L.marker(point_lat_lon).addTo(map);
+        var point_lat_lon = [{{ sighting.LATITUDE }}, {{ sighting.LONGITUDE }}]
+  
+        var pointer_text = "Longitude: {{sighting.LONGITUDE}} <br>Latitude: {{sighting.LATITUDE}} <br>Unique squirrel ID: {{sighting.unique_squirrel_id}}<br><a href='/sightings/update/{{sighting.unique_squirrel_id}}'>Link to Squirrel</a>"
+
+        var pointer = L.marker(point_lat_lon).addTo(map)
+            .bindPopup(pointer_text);
+
+        if (first == true) {
+            first = false;
+            pointer.openPopup();
+        }  
         {% endfor %}
     </script>
   </body>

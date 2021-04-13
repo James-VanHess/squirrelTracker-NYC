@@ -52,8 +52,7 @@ class Squirrel(models.Model):
         )
     
     # Date
-    DATE = models.DateField(
-        max_length=50, 
+    DATE = models.DateField( 
         blank=True,
         null=True,
         )
