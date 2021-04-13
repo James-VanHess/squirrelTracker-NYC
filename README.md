@@ -3,7 +3,9 @@ squirrelTracker-NYC
 
 Project background description
 ---------------
-This is a web application project developed with Django framework to keep track of all the known squirrels in Central Park. We used a dataset from the 2018 Central Park Squirrel Census. The users are allowed to add, update, and view squirrel data along with the ability to view the sightings on a map of Central Park. 
+This is a web application project developed with Django framework to keep track of all the known squirrels in Central Park. We used a dataset from the 2018 Central Park Squirrel Census. 
+
+The users are allowed to import, manipulate and view squirrel data from the sightings, as well as having the ability to visualize the sightings on a map of Central Park. 
 
 
 Main contributors
@@ -20,13 +22,14 @@ James Van Hess - jfv2110
 Prerequisites
 -------------
 The prerequisites softwares are Python3 and Django web framework.
-
-After installing the prerequisite softwares, we are going to import the 2018 Central Park Squirrel Census dataset and then export this data to a csv file for future use.
+- [Python](https://www.python.org/)
+- [Django](https://www.djangoproject.com)
+- [Django-Leaflet](https://django-leaflet.readthedocs.io/en/latest/)  
 
 
 Main Functions
 --------------
-The applications provides the users with a map displaying the location of the squirrel sightings in Central Park. Besides, the function also includes viewing, creating, updating the squirrels' sighting data as well as viewing the general statistics of them.
+The applications provides the users with a map displaying the location of the squirrel sightings in Central Park. Beside this, the function also includes viewing, creating, and updating the squirrels' sighting data as well as viewing the general statistics of them.
 
 Data Source
 ------------
@@ -38,6 +41,7 @@ This data set contains data from 3,023 sightings, including location coordinates
 Management Commands
 -------------------
 Import: A command that can be used to import the data from the 2018 census file (in CSV format). The file path should be specified at the command line after the name of the management command. 
+*if using csv in our repo, /path/to/file.csv = 2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv
 
 ```sh
 python manage.py import_csv /path/to/file.csv
