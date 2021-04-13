@@ -1,13 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-#!/usr/bin/env python
-# coding: utf-8
-
-
 import json
 import django
 from django.db import DatabaseError
@@ -29,21 +19,33 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import LoginView
 
 
-from .models import Squirrel
-from .forms import django_form
+from sightings.models import Squirrel
+from sightings.forms import django_form
 
 
 def sightings_view(request):
-    view_data = Squirrel.objects.all()
-    context = {'squirrel':view_data}
+    sq_data=Squirrel.objects.all()
+    page = request.GET.get('page', 1)
 
-    return render(request, 'sightings/Sightings_HTML.html', context)
+    paginator = Paginator(sq_data, 10)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+    return render(request, 'sightings/Sightings_HTML.html', {'users':users})
+    
+    # view_data = Squirrel.objects.all()[:50]
+    # context = {'sightings':view_data}
+    # return render(request, 'sightings/Sightings_HTML.html', context)
 
 
 def add_view(request):
     if request.method == "POST":
         form = django_form(request.POST)
         if form.is_valid():
+            #x = form['unique_squirrel_id'].value()
             form.save()
             return redirect("/sightings/")
     else:
@@ -52,7 +54,7 @@ def add_view(request):
 
 
 def update_view(request, unique_squirrel_id):
-    Object = get_object_or_404(Squirrel,unique_squirrel_id=squirrel_id)
+    Object = get_object_or_404(Squirrel,unique_squirrel_id=unique_squirrel_id)
     form = django_form(request.POST or None,instance=Object)
     context = {'form':form}
     if form.is_valid():

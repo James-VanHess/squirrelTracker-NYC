@@ -2,8 +2,10 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext as _
 from django.urls import reverse
 from django.forms import ModelForm
+
 
 
 class Meta:
@@ -13,145 +15,146 @@ class Squirrel(models.Model):
     '''
     Creates a new sighting incident for the squirrelTracker app
     '''
-    
+    # traditional Class module to return a readable string of information
+    def __str__(self):
+        return self.unique_squirrel_id 
+
     #                                                               #
     ## fields for information needed, going down the required list ##
     #                                                               #   
 
 
     # Lattitude 
-    x = models.FloatField(blank=False,)
+    LATITUDE = models.FloatField(blank=False, null=False)
     
     # Longitude
-    y = models.FloatField(blank=False,)
+    LONGITUDE = models.FloatField(blank=False, null=False)
 
     # Lat/Long
-    lat_long = f'Point ({x}, {y})'
+    lat_long = f'Point ({LATITUDE}, {LONGITUDE})'
 
 
     # Unique Squirrel ID
     unique_squirrel_id = models.CharField(
-        max_length=100, 
+        max_length=50, 
         primary_key=True,
-        default=None,
-        blank=False
         )
 
     # Shift
-    am = 'AM'
-    pm = 'PM'
-    shift_choices = ((am, 'AM'), (pm, 'PM'),)
+    AM = 'AM'
+    PM = 'PM'
+    SHIFT_CHOICES = ((AM, 'AM'), (PM, 'PM'),)
     
-    shift = models.CharField(
-        max_length=100,
-        choices=shift_choices, 
-        blank=True,
+    SHIFT = models.CharField(
+        max_length=2,
+        choices=SHIFT_CHOICES, 
+        default='Unknown',
         )
     
     # Date
-    date = models.DateField(
-        max_length=100, 
+    DATE = models.DateField(
+        max_length=50, 
         blank=True,
+        null=True,
         )
     
     # Age
-    adult = 'Adult'
-    juvenile = 'Juvenile'
-    age_choices = ((juvenile, 'Juvenile'), (adult, 'Adult'))
+    ADULT = 'Adult'
+    JUVENILE = 'Juvenile'
+    AGE_CHOICES = ((JUVENILE, 'Juvenile'), (ADULT, 'Adult'))
    
-    age = models.CharField(
-        max_length=100, 
-        choices=age_choices,
+    AGE = models.CharField(
+        max_length=50, 
+        choices=AGE_CHOICES,
         blank=True,
         null=True,
         )
 
     # Primary Fur Color
-    gray = 'Gray'
-    cinnamon = 'Cinnamon'
-    black = 'Black'
-    color_choices = (
-        (gray, 'Gray'), 
-        (cinnamon, 'Cinnamon'), 
-        (black, 'Black'),
+    GRAY = 'Gray'
+    CINNAMON = 'Cinnamon'
+    BLACK = 'Black'
+    COLOR_CHOICES = (
+        (GRAY, 'Gray'), 
+        (CINNAMON, 'Cinnamon'), 
+        (BLACK, 'Black'),
         )
 
-    primary_fur_color = models.CharField(
+    PRIMARY_FUR_COLOR = models.CharField(
         max_length=100,
-        choices=color_choices,
-        blank=True,
-        null=True,
+        choices=COLOR_CHOICES,
+        default='Unknown',
     )
     
     # Location
-    ground_plane = 'Ground Plane'
-    above_ground = 'Above Ground'
+    GROUND = 'Ground Plane'
+    ABOVE = 'Above Ground'
     location_choices = (
-        (ground_plane, 'Ground Plane'),
-        (above_ground, 'Above Ground'),
+        (GROUND, 'Ground Plane'),
+        (ABOVE, 'Above Ground'),
     )
-    location = models.CharField(
-        max_length=100,
+    LOCATION = models.CharField(
+        max_length=50,
         choices=location_choices,
-        blank=True,
-        null=True,
+        default='Unknown'
     )
     # Specific Location
-    specific_location = models.CharField(
-        max_length=100,
+    SPECIFIC_LOCATION = models.CharField(
+        max_length=255,
         blank=True,
         null=True,
     )
     # Running
-    running = models.BooleanField(blank=True)
+    RUNNING = models.BooleanField(default=False)
 
     # Chasing
-    chasing = models.BooleanField(blank=True)
+    CHASING = models.BooleanField(default=False)
 
     # Climbing
-    climbing = models.BooleanField(blank=True)
+    CLIMBING = models.BooleanField(default=False)
 
     # Eating
-    eating = models.BooleanField(blank=True)
+    EATING = models.BooleanField(default=False)
 
     # Foraging
-    foraging = models.BooleanField(blank=True)
+    FORAGING = models.BooleanField(default=False)
 
     # Other Activities
-    other_activities = models.BooleanField(blank=True)
+    OTHER_ACTIVITIES = models.CharField(
+        max_length=200, 
+        blank=True,
+        null=True, 
+        )
 
     # Kuks
-    kuks = models.BooleanField(blank=True)
+    KUKS = models.BooleanField(default=False)
 
     # Quaas
-    quaas = models.BooleanField(blank=True)
+    QUAAS = models.BooleanField(default=False)
 
     # Moans
-    moans = models.BooleanField(blank=True)
+    MOANS = models.BooleanField(default=False)
 
     # Tail flags
-    tail_flags = models.BooleanField(blank=True)
+    TAIL_FLAGS = models.BooleanField(default=False)
 
     # Tail twitches
-    tail_twitches = models.BooleanField(blank=True)
+    TAIL_TWITCHES = models.BooleanField(default=False)
 
     # Approaches
-    approaches = models.BooleanField(blank=True)
+    APPROACHES = models.BooleanField(default=False)
 
     # Indifferent
-    indifferent = models.BooleanField(blank=True)
+    INDIFFERENT = models.BooleanField(default=False)
 
     # Runs from
-    runs_from = models.BooleanField(blank=True)
+    RUNS_FROM = models.BooleanField(default=False)
 
     #                                                               #
     ## end -fields for information needed from required list+      ##
     #                                                               #   
 
 
-    # traditional Class module to return a readable string of information
-    def __str__(self):
-        return self.unique_squirrel_id
 
     
 # class Question(models.Model):
