@@ -89,5 +89,5 @@ def stats_view(request):
 
 
 def map_view(request):
-    map_sighting = Squirrel.objects.all()[:100]
-    return render(request, 'sightings/Map_HTML.html', {"map_sighting": map_sighting})
+    map_squirrel = Squirrel.objects.all()[:100]
+    return render(request, 'sightings/Map_HTML.html', {"map_squirrel": map_squirrel})
