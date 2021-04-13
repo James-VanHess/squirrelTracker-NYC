@@ -18,7 +18,6 @@
             <ul>
                 <li>View Squirrel Map <a href="/sightings/map/">here</a>!</li>
                 <li>Add a new sighting <a href="/sightings/add/">here</a>!</li>
-                <li>Update a sighting <a href="/sightings/update/">here</a>!</li>
                 <li>View squirrel stats <a href="/sightings/stats/">here</a>!</li>
                 <li>View all sightings <a href="/sightings/">here</a>!</li>
             </ul>
@@ -28,7 +27,7 @@
               <tr>
                 <th>LATITUDE</th>
                 <th>LONGITUDE</th>
-                <th>unique_squirrel_id</th>
+                <th>UNIQUE_SQUIRREL_ID</th>
                 <th>SHIFT</th>
                 <th>DATE</th>
                 <th>AGE</th>
@@ -77,9 +76,7 @@
                 <td>{{row.INDIFFERENT}}</td>
                 <td>{{row.RUNS_FROM}}</td>
                 <td>
-                  <a href="/sightings/{{row.unique_squirrel_id}}/">edit</a></td>
-                <td>
-                  <a href="/sightings/{{row.unique_squirrel_id}}/delete/">delete</a></td>
+                  <a href="/sightings/update/{{row.unique_squirrel_id}}/">update</a></td>
               </tr>{% endfor %}</tbody>
           </table>
           <nav aria-label="...">
