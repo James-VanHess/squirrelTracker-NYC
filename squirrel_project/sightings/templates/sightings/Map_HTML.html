@@ -55,7 +55,7 @@
 
         {% for sighting in map_squirrel.all %}
             var point_lat_lon = [{{sighting.LONGITUDE}}, {{sighting.LATITUDE}}]
-            var point_text = "Longitude: {{sighting.LONGITUDE}} <br>Latitude: {{sighting.LATITUDE}} <br>Unique squirrel ID: {{sighting.unique_squirrel_id}}<br><a href='/sightings/update/{{sighting.unique_squirrel_id}}'>Link to Update Squirrel</a>"
+            var point_text = "Longitude: {{sighting.LONGITUDE}} <br>Latitude: {{sighting.LATITUDE}} <br>Unique squirrel ID: {{sighting.unique_squirrel_id}}<br><a href='/sightings/update/{{sighting.unique_squirrel_id}}'>Link to Update Squirrel Data</a>"
 
             var point = L.marker(point_lat_lon).addTo(map)
                 .bindPopup(point_text);
