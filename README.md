@@ -40,8 +40,7 @@ This data set contains data from 3,023 sightings, including location coordinates
 
 Management Commands
 -------------------
-**Import**: A command that can be used to import the data from the 2018 census file (in CSV format). The file path should be specified at the command line after the name of the management command. 
-*if using csv in our repo, /path/to/file.csv = 2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv*
+**Import**: A command that can be used to import the data from the 2018 census file (in CSV format). The file path should be specified at the command line after the name of the management command. *If using csv in our repo, /path/to/file.csv = 2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv*
 
 ```sh
 python manage.py import_csv /path/to/file.csv
