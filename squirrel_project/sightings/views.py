@@ -78,11 +78,16 @@ def update_view(request, unique_squirrel_id):
 
 
 def stats_view(request):
-    return render(request, 'sightings/Stats_HTML.html')
+    sq_data=Squirrel.objects.all()
+    total =len(sq_data)
+    lat=sq_data.aggregate(min_latitude=Min('LATITUDE'),max_latitude=Max('LATITUDE'),average_latitude=Avg('LATITUDE'))
+    lon=sq_data.aggregate(min_longitude=Min('LONGITUDE'),max_longitude=Max('LONGITUDE'),average_longitude=Avg('LONGITUDE'))
+    shift=list(sq_data.values_list('SHIFT').annotate(Count('SHIFT')))
+    age=list(sq_data.values_list('AGE').annotate(Count('AGE')))
+    fur=list(sq_data.values_list('PRIMARY_FUR_COLOR').annotate(Count('PRIMARY_FUR_COLOR')))
+    return render(request, 'sightings/Stats_HTML.html', {"total":total,"lat":lat,"lon":lon,"shift":shift,"age":age,"fur":fur})
 
 
 def map_view(request):
-    sighting_limit = 100
-    map_sighting = Squirrel.objects.all()[:sighting_limit]
+    map_sighting = Squirrel.objects.all()[:100]
     return render(request, 'sightings/Map_HTML.html', {"map_sighting": map_sighting})
-
