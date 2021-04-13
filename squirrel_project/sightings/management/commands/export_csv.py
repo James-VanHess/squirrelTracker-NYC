@@ -25,13 +25,3 @@ class Command(BaseCommand):
             writer.writerow(field_names)
             for instance in model.objects.all():
                 writer.writerow([getattr(instance, f) for f in field_names])
-        
-        # with open(path, 'w', newline='') as f:
-        #     model = Squirrel
-        #     field_names =  [fa.name for fa in model._meta.fields]
-        #     writer = csv.writer(f, quoting=csv.QUOTE_ALL)
-        #     writer.writerow(field_names)
-        #     for i in model.objects.all():
-        #         row = [getattr(i, fi) for fi in field_names]
-        #         writer.writerow(row)
-        #     f.close()
