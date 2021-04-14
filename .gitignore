@@ -5,6 +5,10 @@ __pycache__/
 
 # Desktop stuff
 *.DS_Store
+.#*
+*.swp
+.dir-locals.el
+.dir-locals-2.el
 
 # Django stuff
 *.log
@@ -42,6 +46,3 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
-# swap files
-*.swp
