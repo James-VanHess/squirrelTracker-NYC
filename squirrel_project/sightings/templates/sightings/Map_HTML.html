@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+ 
     <link rel="stylesheet"
           href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -24,6 +24,34 @@
     </style>
   </head>
   <body>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #C1693C;">
+          <a class="navbar-brand" href="">squirrelTracker-NYC</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="../">Home</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/sightings/map/">Map <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/sightings/">Sightings</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/sightings/add">Add</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/sightings/stats">Statistics</a>
+              </li>
+  
+            </ul>
+          </div>
+        </nav>
+
     <div id="map" class="container-fluid h-100"></div>
 
     <!-- Optional JavaScript -->
@@ -50,13 +78,22 @@
         <!-- L.Icon.Default.prototype.options.iconAnchor = [0, 0]; -->
         <!-- L.Icon.Default.prototype.options.shadowSize = 15; -->
         <!-- L.Icon.Default.prototype.options.shadowAnchor = [0, 0]; -->
-
+        
         var first = true;
 
         {% for sighting in map_squirrel.all %}
-          var point_lat_lon = [{{ sighting.LATITUDE }}, {{ sighting.LONGITUDE }}];
-          var marker = L.marker(point_lat_lon).addTo(map);
+            var point_lat_lon = [{{sighting.longitude}}, {{sighting.latitude}}]
+            var maker_text = "Longitude: {{sighting.longitude}} <br>Latitude: {{sighting.latitude}} <br>Unique squirrel ID: {{sighting.unique_squirrel_id}}<br><a href='/sightings/{{sighting.unique_squirrel_id}}'>Link to Squirrel</a>"
+
+            var maker = L.marker(point_lat_lon).addTo(map)
+                .bindPopup(maker_text);
+
+            if (first == true) {
+                first = false;
+                maker.openPopup();
+            }
         {% endfor %}
     </script>
+    
   </body>
 </html>
