@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 # Desktop stuff
-*.DS_Store
+.DS_Store
 .#*
 *.swp
 .dir-locals.el
