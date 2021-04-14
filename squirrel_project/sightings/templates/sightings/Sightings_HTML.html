@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>sightings</title>
+        <title>Sightings</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <!-- Optional JavaScript -->
@@ -12,15 +12,33 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <title>squirrelTracker-NYC</title>
     </head>
-    <body style="background-color:ivory;">       
+    <body style="background-color:ivory;">     
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #C1693C;">
+        <a class="navbar-brand" href="">squirrelTracker-NYC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="../">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sightings/map/">Map <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/sightings/add/">Add</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/sightings/stats/">Statistics</a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>  
     <h1>squirrelTracker-NYC</h1>
         <p>
-            <ul>
-                <li>View Squirrel Map <a href="/sightings/map/">here</a>!</li>
-                <li>Add a new sighting <a href="/sightings/add/">here</a>!</li>
-                <li>View squirrel stats <a href="/sightings/stats/">here</a>!</li>
-                <li>View all sightings <a href="/sightings/">here</a>!</li>
-            </ul>
         </p>
         <table class="table table-bordered table-responsive table-striped table-hover">
             <thead class="thead-dark">
@@ -51,30 +69,30 @@
             </thead>
             <tbody>{% for row in users %}
               <tr>
-                <td>{{row.LATITUDE}}</td>
-                <td>{{row.LONGITUDE}}</td>
+                <td>{{row.latitude}}</td>
+                <td>{{row.longitude}}</td>
                 <td>
                   <a href="/sightings/update/{{row.unique_squirrel_id}}/">{{row.unique_squirrel_id}}</a></td>
-                <td>{{row.SHIFT}}</td>
-                <td nowrap="nowrap">{{row.DATE}}</td>
-                <td>{{row.AGE}}</td>
-                <td>{{row.PRIMARY_FUR_COLOR}}</td>
-                <td nowrap="nowrap">{{row.LOCATION}}</td>
-                <td>{{row.SPECIFIC_LOCATION}}</td>
-                <td>{{row.RUNNING}}</td>
-                <td>{{row.CHASING}}</td>
-                <td>{{row.CLIMBING}}</td>
-                <td>{{row.EATING}}</td>
-                <td>{{row.FORAGING}}</td>
-                <td>{{row.OTHER_ACTIVITIES}}</td>
-                <td>{{row.KUKS}}</td>
-                <td>{{row.QUAAS}}</td>
-                <td>{{row.MOANS}}</td>
-                <td>{{row.TAIL_FLAGS}}</td>
-                <td>{{row.TAIL_TWITCHES}}</td>
-                <td>{{row.APPROACHES}}</td>
-                <td>{{row.INDIFFERENT}}</td>
-                <td>{{row.RUNS_FROM}}</td>
+                <td>{{row.shift}}</td>
+                <td nowrap="nowrap">{{row.date}}</td>
+                <td>{{row.age}}</td>
+                <td>{{row.primary_fur_color}}</td>
+                <td nowrap="nowrap">{{row.location}}</td>
+                <td>{{row.specific_location}}</td>
+                <td>{{row.running}}</td>
+                <td>{{row.chasing}}</td>
+                <td>{{row.climbing}}</td>
+                <td>{{row.eating}}</td>
+                <td>{{row.foraging}}</td>
+                <td>{{row.other_activitites}}</td>
+                <td>{{row.kuks}}</td>
+                <td>{{row.quaas}}</td>
+                <td>{{row.moans}}</td>
+                <td>{{row.tail_flags}}</td>
+                <td>{{row.tail_twitches}}</td>
+                <td>{{row.approaches}}</td>
+                <td>{{row.indifferent}}</td>
+                <td>{{row.runs_from}}</td>
                 <td>
                   <a href="/sightings/update/{{row.unique_squirrel_id}}/">update</a></td>
               </tr>{% endfor %}</tbody>

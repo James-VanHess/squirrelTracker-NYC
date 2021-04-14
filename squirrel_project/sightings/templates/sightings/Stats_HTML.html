@@ -1,32 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>sightings</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/4.0.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <title>squirrelTracker-NYC</title>
-    </head>
-    <body style="background-color:ivory;">
-        <h1>squirrelTracker-NYC</h1>
-        <p>
-            <ul>
-                <li>View Squirrel Map <a href="/sightings/map/">here</a>!</li>
-                <li>Add a new sighting <a href="/sightings/add/">here</a>!</li>
-                <li>View squirrel stats <a href="/sightings/stats/">here</a>!</li>
-                <li>View all sightings <a href="/sightings/">here</a>!</li>
-            </ul>
-        </p>
-        <p>
-        </p>
-       <h2 style="font-family:courier;text-align:left;">Statistics of sightings data of squirrels</h2>
-    <ol style="list-style-type:round;">
+  <head>
+    <meta charset="UTF-8">
+    <title>Stats of Sightings</title></head>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/4.0.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <body style="background-color:ivory;">     
+    <nav class="navbar navbar-default " style="background-color: #C1693C;">
+        <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/sightings">squirrelTracker-NYC </a></div>
+        <ul class="nav navbar-nav ">
+          <li>
+            <a href="/sightings">Home</a></li>
+            <li>
+                <a href="/sightings/map">Map</a></li>
+            <li>
+            <a href="/sightings/add">Add</a></li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/sightings/stats">Statistics<span class="sr-only">(current)</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h2 style="font-family:courier;text-align:center;">Statistics of Squirrel Sightings Data</h2>
+    <ol style="list-style-type:round;text-align:left;">
       <li>Total number of sightings: {{total}} </li>
                   <br>
                   <li>Latitiude：average-{{lat.average_latitude}}</li>
@@ -37,11 +38,11 @@
                   <li>Longitude：min-{{lon.min_longitude}}</li>
                   <li>Longitude：max-{{lon.max_longitude}}</li>
                   <br>
-                  <li>shift: {{shift}}</li>
+                  <li>Shift: {{shift}}</li>
                   <br>
-                  <li>age: {{age}}</li>
+                  <li>Age: {{age}}</li>
                   <br>
-                   <li>primary_fur_color: {{fur}}</li> 
+                  <li>Primary Fur Color: {{fur}}</li> 
         </ol>
       <br>
     </body>

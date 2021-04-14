@@ -43,13 +43,13 @@ Management Commands
 **Import**: A command that can be used to import the data from the 2018 census file (in CSV format). The file path should be specified at the command line after the name of the management command. *If using csv in our repo, /path/to/file.csv = 2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv*
 
 ```sh
-python manage.py import_csv /path/to/file.csv
+python manage.py import_squirrel_data /path/to/file.csv
 ```
 
 **Export**: A command that can be used to export the data in CSV format. The file path should be specified at the command line after the name of the management command.
 
 ```sh
-python manage.py export_csv /path/to/file.csv
+python manage.py export_squirrel_data /path/to/file.csv
 ```
 
 Sightings
@@ -57,18 +57,18 @@ Sightings
 ## View All Sightings
 All the sightings can be viewed at the main page and the user can get access to the detailed information about each sighting through the link of unique squirrel id.
 
-    located at: /sightings/
+    located at: /sightings
 
 ## Create New Sightings
 A new spot creation can be made by each user by clicking the "New Spot Creation" button and then users can be firected to a new page to update the information.
 
-    located at: /sightings/add_view/
+    located at: /sightings/add
     
     
 ## View Squirrel Statistics
 The Squirrel Status Summary can be viewed at main page through the link below.
  
-    located at: /sightings/stats_view/
+    located at: /sightings/stats
 
 
 ## Edit Squirrel Sighting Data
@@ -80,4 +80,4 @@ Users can update sighting information about each squirrel sighting via the link 
 ## View Map 
 There is a map visualizing all the locations of squirrels in the Central Park.
     
-    located at: /sightings/map/
+    located at: /sightings/map

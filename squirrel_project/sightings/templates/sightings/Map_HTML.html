@@ -25,7 +25,7 @@
   </head>
   <body>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #C1693C;">
-        <a class="navbar-brand" href="">squirrelTracker-NYC</a>
+        <a class="navbar-brand" href="../">squirrelTracker-NYC</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,13 +39,10 @@
               <a class="nav-link" href="/sightings/map/">Map <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/sightings/">Sightings</a>
+                <a class="nav-link" href="/sightings/add/">Add</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/sightings/add">Add</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/sightings/stats">Statistics</a>
+                <a class="nav-link" href="/sightings/stats/">Statistics</a>
             </li>
 
           </ul>
@@ -81,8 +78,8 @@
         var first = true;
 
         {% for sighting in map_squirrel.all %}
-            var point_lat_lon = [{{sighting.LONGITUDE}}, {{sighting.LATITUDE}}]
-            var maker_text = "Longitude: {{sighting.LONGITUDE}} <br>Latitude: {{sighting.LATITUDE}} <br>Unique squirrel ID: {{sighting.unique_squirrel_id}}<br><a href='/sightings/{{sighting.update.unique_squirrel_id}}'>Link to Squirrel</a>"
+            var point_lat_lon = [{{sighting.longitude}}, {{sighting.latitude}}]
+            var maker_text = "Longitude: {{sighting.longitude}} <br>Latitude: {{sighting.latitude}} <br>Unique squirrel ID: {{sighting.unique_squirrel_id}}<br><a href='/sightings/update/{{sighting.unique_squirrel_id}}'>Update squirrel data for this squirrel</a>"
 
             var maker = L.marker(point_lat_lon).addTo(map)
                 .bindPopup(maker_text);

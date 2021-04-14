@@ -34,23 +34,18 @@ def sightings_view(request):
         users = paginator.page(1)
     except EmptyPage:
         users = paginator.page(paginator.num_pages)
-    return render(request, 'sightings/Sightings_HTML.html', {'users':users})
+    return render(request, 'sightings/sightings_HTML.html', {'users':users})
     
-    # view_data = Squirrel.objects.all()[:50]
-    # context = {'sightings':view_data}
-    # return render(request, 'sightings/Sightings_HTML.html', context)
-
 
 def add_view(request):
     if request.method == "POST":
         form = django_form(request.POST)
         if form.is_valid():
-            #x = form['unique_squirrel_id'].value()
             form.save()
             return redirect("/sightings/")
     else:
         form = django_form()
-    return render(request, 'sightings/Add_HTML.html', {'form':form})
+    return render(request, 'sightings/add_HTML.html', {'form':form})
 
 
 def update_view(request, unique_squirrel_id):
@@ -65,29 +60,21 @@ def update_view(request, unique_squirrel_id):
         context={
                 'form':form,
         }
-        return render(request,'sightings/Update_HTML.html',context)
+        return render(request,'sightings/update_HTML.html',context)
     
-    # update_sighting = get_object_or_404(Squirrel, unique_squirrel_id = unique_squirrel_id)
-    # if request.method == "POST":
-    #     form = django_form(request.POST, instance = update_sighting)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect("/sightings/")
-    # form = django_form(instance=update_sighting)
-    # return render(request, "sightings/Update_HTML.html", {"form": form, "unique_squirrel_id": unique_squirrel_id})
-
 
 def stats_view(request):
-    sq_data=Squirrel.objects.all()
-    total =len(sq_data)
-    lat=sq_data.aggregate(min_latitude=Min('LATITUDE'),max_latitude=Max('LATITUDE'),average_latitude=Avg('LATITUDE'))
-    lon=sq_data.aggregate(min_longitude=Min('LONGITUDE'),max_longitude=Max('LONGITUDE'),average_longitude=Avg('LONGITUDE'))
-    shift=list(sq_data.values_list('SHIFT').annotate(Count('SHIFT')))
-    age=list(sq_data.values_list('AGE').annotate(Count('AGE')))
-    fur=list(sq_data.values_list('PRIMARY_FUR_COLOR').annotate(Count('PRIMARY_FUR_COLOR')))
-    return render(request, 'sightings/Stats_HTML.html', {"total":total,"lat":lat,"lon":lon,"shift":shift,"age":age,"fur":fur})
+    sq_data = Squirrel.objects.all()
+    total = len(sq_data)
+    lat = sq_data.aggregate(min_latitude=Min('latitude'),max_latitude=Max('latitude'),average_latitude=Avg('latitude'))
+    lon = sq_data.aggregate(min_longitude=Min('longitude'),max_longitude=Max('longitude'),average_longitude=Avg('longitude'))
+    shift = list(sq_data.values_list('shift').annotate(Count('shift')))
+    age = list(sq_data.values_list('age').annotate(Count('age')))
+    fur = list(sq_data.values_list('primary_fur_color').annotate(Count('primary_fur_color')))
+    return render(request, 'sightings/stats_HTML.html', {"total":total,"lat":lat,"lon":lon,"shift":shift,"age":age,"fur":fur})
+    
 
 
 def map_view(request):
     map_squirrel = Squirrel.objects.all()[:100]
-    return render(request, 'sightings/Map_HTML.html', {"map_squirrel": map_squirrel})
+    return render(request, 'sightings/map_HTML.html', {"map_squirrel": map_squirrel})
